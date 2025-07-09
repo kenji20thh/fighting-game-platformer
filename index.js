@@ -53,7 +53,7 @@ const enemy = new Sprite({
 const animate = () => {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
-    c.clearRect(0, 0, canvas.width, canvas.height)
+    c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
 }
