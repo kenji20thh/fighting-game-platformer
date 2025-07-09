@@ -47,7 +47,7 @@ const enemy = new Sprite({
 
 const animate = () => {
     window.requestAnimationFrame(animate)
-    c.clearRect()
+    c.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
 }
