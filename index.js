@@ -22,3 +22,10 @@ const player = new Sprite({
 })
 
 player.draw()
+
+const enemy = new Sprite({
+    x: 400,
+    y: 100
+})
+
+enemy.draw()
