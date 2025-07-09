@@ -29,3 +29,9 @@ const enemy = new Sprite({
 })
 
 enemy.draw()
+
+const animate = () => {
+    window.requestAnimationFrame(animate)
+} 
+
+animate()
