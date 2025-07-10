@@ -117,6 +117,15 @@ const keys = {
 
 let lastKey
 
+const rectangularCollisions = ({ rectangle1, rectangle2 }) => {
+    return (
+        rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x &&
+        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
+        rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y &&
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+    )
+}
+
 const animate = () => {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -142,13 +151,24 @@ const animate = () => {
     }
 
     //detect collisions
-    if (player.attackBox.position.x + player.attackBox.width >= enemy.position.x
-        && player.attackBox.position.x <= enemy.position.x + enemy.width
-        && player.attackBox.position.y + player.attackBox.height >= enemy.position.y
-        && player.attackBox.position.y <= enemy.position.x + enemy.height
+    if (rectangularCollisions({
+        rectangle1: player,
+        rectangle2: enemy
+    })
         && player.isAttacking
     ) {
+        player.isAttacking = true
         console.log('coll')
+    }
+
+    if (rectangularCollisions({
+        rectangle1: enemy,
+        rectangle2: player
+    })
+        && enemy.isAttacking
+    ) {
+        enemy.isAttacking = false
+        console.log('attack')
     }
 }
 
@@ -183,8 +203,10 @@ window.addEventListener('keydown', (event) => {
         case 'ArrowUp':
             enemy.velocity.y = -20
             break
+        case 'm':
+            enemy.isAttacking = true
+            break
     }
-    console.log('event')
 })
 
 window.addEventListener('keyup', (event) => {
