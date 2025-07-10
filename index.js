@@ -14,6 +14,7 @@ class Sprite {
         this.velocity = velocity
         this.height = 150
         this.width = 50
+        this.lastKey
     }
     draw() {
         c.fillStyle = 'red'
@@ -60,10 +61,19 @@ const keys = {
     },
     d: {
         pressed: false
+    },
+    z: {
+        pressed: false
+    }, 
+    ArrowLeft: {
+        pressed: false
+    },
+    ArrowRight: {
+        pressed:false
     }
 }
 
-let lastKey 
+let lastKey
 
 const animate = () => {
     window.requestAnimationFrame(animate)
@@ -71,13 +81,24 @@ const animate = () => {
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
-
     player.velocity.x = 0
+    enemy.velocity.x = 0
+
+
+    // player move
     if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 1
     } else if (keys.q.pressed && lastKey === 'q') {
         player.velocity.x = -1
     }
+
+    //enemy move
+    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
+        enemy.velocity.x = 1
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
+        enemy.velocity.x = -1
+    }
+
 }
 
 animate()
@@ -92,6 +113,22 @@ window.addEventListener('keydown', (event) => {
             keys.q.pressed = true
             lastKey = 'q'
             break
+        case 'z':
+            keys.z.pressed = true
+            player.velocity.y = -10
+            break
+
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true
+            enemy.lastKey = 'ArrowRight'
+            break
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = true
+            enemy.lastKey = 'ArrowLeft'
+            break
+        case 'ArrowUp':
+            enemy.velocity.y = -10
+            break
     }
     console.log('event')
 })
@@ -103,6 +140,13 @@ window.addEventListener('keyup', (event) => {
             break
         case 'q':
             keys.q.pressed = false
+            break
+
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = false
+            break
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false
             break
     }
     console.log('event')
