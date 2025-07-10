@@ -63,6 +63,8 @@ const keys = {
     }
 }
 
+let lastKey 
+
 const animate = () => {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -71,9 +73,9 @@ const animate = () => {
     enemy.update()
 
     player.velocity.x = 0
-    if (keys.d.pressed) {
+    if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 1
-    } else if (keys.q.pressed) {
+    } else if (keys.q.pressed && lastKey === 'q') {
         player.velocity.x = -1
     }
 }
@@ -83,10 +85,12 @@ animate()
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
-            keys.d.pressed = false
+            keys.d.pressed = true
+            lastKey = 'd'
             break
         case 'q':
             keys.q.pressed = true
+            lastKey = 'q'
             break
     }
     console.log('event')
