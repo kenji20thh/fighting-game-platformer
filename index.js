@@ -86,9 +86,9 @@ const animate = () => {
 
 
     // player move
-    if (keys.d.pressed && lastKey === 'd') {
+    if (keys.d.pressed && player.lastKey === 'd') {
         player.velocity.x = 1
-    } else if (keys.q.pressed && lastKey === 'q') {
+    } else if (keys.q.pressed && player.lastKey === 'q') {
         player.velocity.x = -1
     }
 
@@ -107,11 +107,11 @@ window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
             keys.d.pressed = true
-            lastKey = 'd'
+            player.lastKey = 'd'
             break
         case 'q':
             keys.q.pressed = true
-            lastKey = 'q'
+            player.lastKey = 'q'
             break
         case 'z':
             keys.z.pressed = true
