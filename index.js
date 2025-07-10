@@ -21,6 +21,7 @@ class Sprite {
             height: 50
         }
         this.color = color
+        this.isAttacking
     }
     draw() {
         c.fillStyle = this.color
@@ -40,7 +41,15 @@ class Sprite {
             this.velocity.y += gravity
         }
     }
+    attack() {
+        this.isAttacking = true
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100)
+    }
 }
+
+
 
 const player = new Sprite({
     position: {
@@ -116,6 +125,7 @@ const animate = () => {
         && player.attackBox.position.x <= enemy.position.x + enemy.width
         && player.attackBox.position.y + player.attackBox.height >= enemy.position.y
         && player.attackBox.position.y <= enemy.position.x + enemy.height
+        && player.isAttacking
     ) {
         console.log('coll')
     }
@@ -136,6 +146,9 @@ window.addEventListener('keydown', (event) => {
         case 'z':
             keys.z.pressed = true
             player.velocity.y = -20
+            break
+        case ' ': 
+            player.attack()
             break
 
         case 'ArrowRight':
