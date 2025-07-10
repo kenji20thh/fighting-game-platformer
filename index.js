@@ -51,7 +51,7 @@ const player = new Sprite({
         x: 0,
         y: 10
     }
-    
+
 })
 
 
@@ -111,6 +111,11 @@ const animate = () => {
         enemy.velocity.x = 5
     }
 
+    //detect collisions
+    if (player.attackBox.position.x + player.attackBox.width >= enemy.position.x
+        && player.attackBox.position.x <= enemy.position.x + enemy.width) {
+        console.log('coll')
+    }
 }
 
 animate()
