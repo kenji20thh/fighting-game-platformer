@@ -15,10 +15,19 @@ class Sprite {
         this.height = 150
         this.width = 50
         this.lastKey
+        this.attackBox = {
+            position: this.position,
+            width: 100,
+            height: 50
+        }
     }
     draw() {
         c.fillStyle = 'red'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
+
+        //attack box
+        c.fillStyle = 'green'
+        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
     }
     update() {
         this.draw()
@@ -64,12 +73,12 @@ const keys = {
     },
     z: {
         pressed: false
-    }, 
+    },
     ArrowLeft: {
         pressed: false
     },
     ArrowRight: {
-        pressed:false
+        pressed: false
     }
 }
 
