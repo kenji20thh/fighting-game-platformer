@@ -87,16 +87,16 @@ const animate = () => {
 
     // player move
     if (keys.d.pressed && player.lastKey === 'd') {
-        player.velocity.x = 1
+        player.velocity.x = 5
     } else if (keys.q.pressed && player.lastKey === 'q') {
-        player.velocity.x = -1
+        player.velocity.x = -5
     }
 
     //enemy move
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
-        enemy.velocity.x = -1
+        enemy.velocity.x = -5
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
-        enemy.velocity.x = 1
+        enemy.velocity.x = 5
     }
 
 }
@@ -115,7 +115,7 @@ window.addEventListener('keydown', (event) => {
             break
         case 'z':
             keys.z.pressed = true
-            player.velocity.y = -10
+            player.velocity.y = -20
             break
 
         case 'ArrowRight':
@@ -127,7 +127,7 @@ window.addEventListener('keydown', (event) => {
             enemy.lastKey = 'ArrowLeft'
             break
         case 'ArrowUp':
-            enemy.velocity.y = -10
+            enemy.velocity.y = -20
             break
     }
     console.log('event')
